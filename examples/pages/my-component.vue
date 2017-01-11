@@ -8,6 +8,12 @@
 </template>
 
 <script>
+var Child = {
+  template: '<div>a custom component!</div>'
+}
 export default {
+  components: {
+    'my-component': Child
+  }
 }
 </script>
