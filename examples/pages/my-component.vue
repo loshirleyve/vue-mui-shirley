@@ -13,7 +13,7 @@ var Child = {
 }
 export default {
   components: {
-    'my-component': Child
+    'my-child-component': Child
   }
 }
 </script>

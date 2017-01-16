@@ -1,40 +1,70 @@
 <template>
-  <div>
-    <input type="checkbox" id="checkbox_a" class="chk_1">
-    <label for="checkbox_a">check<i class="icon icon-checkbox-unchecked"></i></label>
-
-    
+  <div class="checkbox-wrap" @click="handleClick($event)">
+    <input type="checkbox" :value="value" :id="id" :checked="checked">
+    <label :for="id">
+      <i class="icon icon-checkbox-checked" v-if="checked"></i>
+      <i class="icon icon-checkbox-unchecked" v-else></i>
+      <slot></slot>
+    </label>
   </div>
 </template>
 
 <script>
 export default {
   name: 'vui-checkbox',
+  props: {
+    value: {
+      type: String
+    },
+    id: {
+      type: String
+    },
+    disabled: {
+      type: Boolean,
+      default: false
+    },
+    checked: {
+      type: Boolean
+    }
+  },
   data: function() {
     return {
-      icons: ['checkbox-unchecked', 'checkbox-checked', 'checkbox-checked-fill']
+      value: {
+        type: String
+      },
+      id: {
+        type: String
+      },
+      disabled: {
+        type: Boolean,
+        default: false
+      },
+      checked: this.checked
     }
+  },
+  methods: {
+    handleClick: function (eve) {
+      this.checked = !this.checked
+    }
+  },
+  computed: {
   }
 }
 </script>
 
 <style scoped>
-.chk_1 {
-  display: none;
+input[type="checkbox"]{
+    display: none;
 }
-.chk_1 + label:before {
-  content: '\e720';
-  display: inline-block;
-  position: relative;
+input[type="checkbox"]+label {
+    display: inline-block;
+    width: 48%;
+    margin-top: 10px;
+    margin-left: 5px;
+    text-align: left;
+    -webkit-box-sizing: border-box;
 }
-.chk_1:active + label:before {
-  content: '\e721';
+input[type="checkbox"]+label i {
   display: inline-block;
-  position: relative;
-}
-.chk_1:checked + label:before {
-  content: '\e722';
-  display: inline-block;
-  position: relative;
 }
 </style>

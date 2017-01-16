@@ -1,6 +1,7 @@
 <template>
   <div>
     <span>A custom component!</span>
+    <my-child-component></my-child-component>
   </div>
 </template>
 
