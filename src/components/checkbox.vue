@@ -1,9 +1,9 @@
 <template>
-  <div class="checkbox-wrap" @click="handleClick($event)">
-    <input type="checkbox" :value="value" :id="id" :checked="checked">
+  <div class="checkbox-wrap">
+    <input type="checkbox" :value="value" :id="id" class="vui-checkbox" :checked="checked" :disabled="disabled" :readonly="readonly">
     <label :for="id">
-      <i class="icon icon-checkbox-checked" v-if="checked"></i>
-      <i class="icon icon-checkbox-unchecked" v-else></i>
+      <i class="icon icon-checkbox-checked"></i>
+      <i class="icon icon-checkbox-unchecked"></i>
       <slot></slot>
     </label>
   </div>
@@ -14,57 +14,35 @@ export default {
   name: 'vui-checkbox',
   props: {
     value: {
-      type: String
+      type: [String, Number]
     },
     id: {
       type: String
     },
     disabled: {
-      type: Boolean,
-      default: false
+      type: Boolean
     },
     checked: {
       type: Boolean
+    },
+    readonly: {
+      type: Boolean
     }
-  },
-  data: function() {
-    return {
-      value: {
-        type: String
-      },
-      id: {
-        type: String
-      },
-      disabled: {
-        type: Boolean,
-        default: false
-      },
-      checked: this.checked
-    }
-  },
-  methods: {
-    handleClick: function (eve) {
-      this.checked = !this.checked
-    }
-  },
-  computed: {
   }
 }
 </script>
 
-<style scoped>
+<style>
 input[type="checkbox"]{
     display: none;
 }
-input[type="checkbox"]+label {
-    display: inline-block;
-    width: 48%;
-    margin-top: 10px;
-    margin-left: 5px;
-    text-align: left;
-    -webkit-box-sizing: border-box;
+.vui-checkbox + label i.icon-checkbox-checked, .vui-checkbox:checked + label i.icon-checkbox-unchecked{
+  display: none;
 }
-input[type="checkbox"]+label i {
+.vui-checkbox + label i.icon-checkbox-unchecked, .vui-checkbox:checked + label i.icon-checkbox-checked{
   display: inline-block;
+}
+input[type="checkbox"][disabled] + label i, input[type="checkbox"][readonly] + label i{
+  color: rgba(0, 0, 0, 0.5);
 }
 </style>
