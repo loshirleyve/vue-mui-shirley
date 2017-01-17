@@ -42,7 +42,7 @@ input[type="checkbox"]{
 .vui-checkbox + label i.icon-checkbox-unchecked, .vui-checkbox:checked + label i.icon-checkbox-checked{
   display: inline-block;
 }
-input[type="checkbox"][disabled] + label i, input[type="checkbox"][readonly] + label i{
+input[type="checkbox"][disabled] + label, input[type="checkbox"][readonly] + label{
   color: rgba(0, 0, 0, 0.5);
 }
 </style>
